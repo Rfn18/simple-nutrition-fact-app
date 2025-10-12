@@ -18,10 +18,9 @@ body {
   position: relative;
   width: 100%;
   height: 100vh;
-  padding-top: 5em;
+  padding-top: 3em;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .nutritionFactApp {
@@ -31,7 +30,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: auto;
+  height: auto;
   padding: 2em;
   border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -54,4 +53,48 @@ body {
 
 .container-ingridients tr:nth-of-type(odd) {
   background-color: #eaeaea;
+}
+
+.container-card-nutrition {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-card-nutrition th {
+  text-align: start;
+  font-family: "Poppins", sans-serif;
+}
+
+.container-card-nutrition tbody th {
+  padding: .3em 0;
+  font-weight: 400;
+}
+
+.container-card-nutrition tbody th, .container-card-nutrition tbody td {
+  border-top: 1px solid #ddd;
+  font-size: 15px
+}
+
+.container-card-nutrition tbody td {
+  text-align: end;
+}
+
+
+.container-card-nutrition tbody .calories-padding th{
+  padding: .2em 0;
+  font-size: 30px;
+  border-top: none;
+}
+
+.container-card-nutrition tbody .calories-padding td{
+  font-size: 30px;
+  border-top: none;
+}
+
+.container-card-nutrition .sub-nutrition {
+  padding-left: 1em;
+}
+
+b {
+  font-weight: 700;
 }

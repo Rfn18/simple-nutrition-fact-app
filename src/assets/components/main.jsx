@@ -79,7 +79,7 @@ function Main({ handleLoading }) {
 
   return (
     <>
-      <main className="flex justify-between items-center w-full h-full mt-[2em] px-10">
+      <main className="flex justify-between w-full h-full mt-[2em] px-10">
         {/* <MainData /> */}
         <div className="flex flex-col justify-center items-center gap-5 w-2xl containerItems">
           <textarea
@@ -129,21 +129,22 @@ function Main({ handleLoading }) {
             </table>
           </div>
         </div>
-        <div className="w-60 bg-white container-card-nutrition">
-          <h1>Nutrition Facts</h1>
+        <div className="w-80 bg-white p-5 container-card-nutrition rounded-2xl">
+          <h1 className="text-3xl font-bold text-center mt-5 mb-3 pb-3 border-b-10 border-[#eaeaeaea]">Nutrition Facts</h1>
           <table>
             <thead>
               <th>Amount Per Serving</th>
             </thead>
-            <tr>
+            <tbody>
+            <tr className="font-bold border-b-5 border-[#eaeaeaea] calories-padding">
               <th>
                 <b>Calories</b>
               </th>
               <td>1174</td>
             </tr>
-            <tr className="thick-row">
-              <td>
-                <d>% Daily Value*</d>
+            <tr className="font-bold text-end thick-row">
+              <td colSpan={2}>
+                <d className="text-[12px]">% Daily Value*</d>
               </td>
             </tr>
             <tr>
@@ -155,13 +156,13 @@ function Main({ handleLoading }) {
               <td>28%</td>
             </tr>
             <tr>
-              <th>
+              <th className="sub-nutrition">
                 Saturated Fat <span>2 g</span>
               </th>
               <td>10%</td>
             </tr>
             <tr>
-              <th>
+              <th className="sub-nutrition">
                 Trans Fat <span>0 g</span>
               </th>
               <td></td>
@@ -171,45 +172,46 @@ function Main({ handleLoading }) {
                 <b>
                   Cholesterol <span>0 mg</span>
                 </b>
-                <td>0 %</td>
               </th>
+              <td>0 %</td>
             </tr>
             <tr>
               <th>
                 <b>
                   Sodium <span>70 mg</span>
                 </b>
-                <td>3 %</td>
               </th>
+              <td>3 %</td>
             </tr>
             <tr>
               <th>
                 <b>
                   Total Carbohydrate <span>333.2 g</span>
                 </b>
-                <td>111 %</td>
               </th>
+              <td>111 %</td>
             </tr>
             <tr>
-              <th>
+              <th className="sub-nutrition">
                 Dietary Fiber <span>34.6 g</span>
-                <td>138 %</td>
               </th>
+              <td>138 %</td>
             </tr>
             <tr>
-              <th>
+              <th className="sub-nutrition">
                 Total Sugars <span>30.3 g</span>
-                <td></td>
               </th>
+                <td></td>
             </tr>
             <tr>
               <th>
                 <b>
                   Protein <span>71 g</span>
                 </b>
-                <td>142 %</td>
               </th>
+                <td>142 %</td>
             </tr>
+            </tbody>
           </table>
         </div>
       </main>
