@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
+function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setDatas }) {
   const [ingr, setIngr] = useState();
   const [res, setRes] = useState();
   const [parsed, setParsed] = useState();
@@ -27,6 +27,15 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
     setParsed(details);
   }, [res]);
 
+  // Nutrition Fact Datas
+  const [calories, setCalories] = useState()
+
+  useEffect(() => {
+    console.log(parsed)
+  }, [parsed])
+
+  console.log(calories)
+  
   return (
     <>
       <div className="flex when-result">
@@ -46,7 +55,10 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
             >
               Analyze
             </button>
-            <button className="bg-[#fab12f] text-white font-bold text-sm rounded-4xl py-[.5em] px-[20px] w-30 cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 btnAnalyze">
+            <button 
+            className="bg-[#fab12f] text-white font-bold text-sm rounded-4xl py-[.5em] px-[20px] w-30 cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 btnAnalyze"
+            onClick={() => setDatas("")}
+            >
               New recipe
             </button>
           </div>

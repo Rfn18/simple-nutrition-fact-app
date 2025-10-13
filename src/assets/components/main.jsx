@@ -31,8 +31,8 @@ function Main({ handleLoading }) {
       const testData = food[lastLength].split("\n");
 
       async function apiEdamam() {
-        const app_id = "cbb235ae";
-        const app_key = "b777602c20d30947ce181ca61e2b445d";
+        const app_id = "576adac6";
+        const app_key = "1b23e83b42645133319e5da12e5357a9";
 
         try {
           handleLoading(true);
@@ -59,6 +59,10 @@ function Main({ handleLoading }) {
     }
   }, [updated]);
 
+  const setDatasComponent = (item) => {
+    setData(item)
+  }
+
   return (
     <>
       <main className="flex flex-col items-center gap-4 w-full h-full mt-[2em] px-10">
@@ -76,6 +80,7 @@ function Main({ handleLoading }) {
             addFood={addFood}
             handleUpdated={handleUpdated}
             datas={data}
+            setDatas={setDatasComponent}
           />
         )}
       </main>
