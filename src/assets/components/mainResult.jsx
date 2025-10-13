@@ -1,7 +1,36 @@
 import { useState, useEffect } from "react";
 
 function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
-  
+  const [ingr, setIngr] = useState();
+  const [res, setRes] = useState([]);
+  const [cal, setCal] = useState([]);
+
+  useEffect(() => {
+    if (datas.lenght >= 1) return;
+    const foods = datas.map((items) => {
+      return items.foods;
+    });
+    setIngr(foods);
+  }, [datas]);
+
+  useEffect(() => {
+    const foods = ingr?.map((items) => {
+      return items[0];
+    });
+    setRes(foods);
+  }, [ingr]);
+
+  useEffect(() => {
+    const calories = res?.map((items) => {
+      return items.nf_calories;
+    });
+    let totalCalories = 0;
+    for (let i = 0; i < calories?.length; i++) {
+      totalCalories += calories[i];
+    }
+    setCal(totalCalories);
+  }, [res]);
+
   return (
     <>
       <div className="flex when-result">
@@ -21,9 +50,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
             >
               Analyze
             </button>
-            <button 
-            className="bg-[#fab12f] text-white font-bold text-sm rounded-4xl py-[.5em] px-[20px] w-30 cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 btnAnalyze"
-            >
+            <button className="bg-[#fab12f] text-white font-bold text-sm rounded-4xl py-[.5em] px-[20px] w-30 cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 btnAnalyze">
               New recipe
             </button>
           </div>
@@ -37,13 +64,16 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
                 <th>Weight</th>
               </thead>
               <tbody>
-                  <tr >
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
+                {Array.isArray(res) &&
+                  res.map((items, i) => (
+                    <tr key={i}>
+                      <td>{items.serving_qty}</td>
+                      <td>{items.serving_unit}</td>
+                      <td>{items.food_name}</td>
+                      <td>{items.nf_calories}</td>
+                      <td>{items.serving_weight_grams} g</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
@@ -61,7 +91,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
                 <th>
                   <b>Calories</b>
                 </th>
-                <td>1174</td>
+                <td>{cal}</td>
               </tr>
               <tr className="font-bold text-end thick-row">
                 <td colSpan={2}>
