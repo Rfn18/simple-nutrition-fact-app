@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
   const [ingr, setIngr] = useState();
   const [res, setRes] = useState([]);
-  const [cal, setCal] = useState([]);
+  const [nuFact, setNuFact] = useState( );
 
   useEffect(() => {
     if (datas.lenght >= 1) return;
@@ -20,15 +20,27 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
     setRes(foods);
   }, [ingr]);
 
+  console.log(res)
+
   useEffect(() => {
-    const calories = res?.map((items) => {
-      return items.nf_calories;
+    const factValue = res?.map((items) => {
+      return {calories: items.nf_calories, fat: {total_fat: items.nf_total_fat, saturated_fat: items.nf_saturated_fat}, cholestrol: items.full_nutrients[64].value, sodium: items.nf_sodium, carbohidrate: {total_carbohidrate: items.nf_total_carbohydrate, dietary_fiber: items.nf_dietary_fiber, total_sugar: items.nf_sugars},protein: items.nf_protein};
     });
-    let totalCalories = 0;
-    for (let i = 0; i < calories?.length; i++) {
-      totalCalories += calories[i];
-    }
-    setCal(totalCalories);
+    
+  const total = factValue?.reduce((acc, item) => {
+    acc.calories += item.calories || 0;
+    acc.fat.total_fat += item.fat?.total_fat || 0;
+    acc.fat.saturated_fat += item.fat?.saturated_fat || 0;
+    acc.cholestrol += item.cholestrol || 0;
+    acc.sodium += item.sodium || 0;
+    acc.carbohidrate.total_carbohidrate += item.carbohidrate?.total_carbohidrate || 0;
+    acc.carbohidrate.dietary_fiber += item.carbohidrate?.dietary_fiber || 0;
+    acc.carbohidrate.sugar += item.carbohidrate?.total_sugar || 0;
+    acc.protein += item.protein || 0;
+    return acc;
+  }, { calories: 0, fat: {total_fat: 0, saturated_fat: 0}, cholestrol: 0, sodium: 0, carbohidrate: {total_carbohidrate: 0, dietary_fiber: 0, total_sugar: 0},protein: 0});
+
+  console.log(total);
   }, [res]);
 
   return (
@@ -91,7 +103,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
                 <th>
                   <b>Calories</b>
                 </th>
-                <td>{cal}</td>
+                <td>1774</td>
               </tr>
               <tr className="font-bold text-end thick-row">
                 <td colSpan={2}>
