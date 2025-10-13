@@ -1,40 +1,6 @@
 import { useState, useEffect } from "react";
 
-function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setDatas }) {
-  const [ingr, setIngr] = useState();
-  const [res, setRes] = useState();
-  const [parsed, setParsed] = useState();
-
-  useEffect(() => {
-    if (!datas) return;
-    const ingredients = datas.map((item) => item.ingredients);
-    setIngr(ingredients);
-  }, [datas]);
-
-  function result() {
-    if (!ingr || ingr.length === 0) return [];
-    return ingr.flat().map((item) => item);
-  }
-
-  useEffect(() => {
-    if (!ingr) return;
-    setRes(result());
-  }, [ingr]);
-
-  useEffect(() => {
-    if (!res) return;
-    const details = res.map((item) => item.parsed[0]);
-    setParsed(details);
-  }, [res]);
-
-  // Nutrition Fact Datas
-  const [calories, setCalories] = useState()
-
-  useEffect(() => {
-    console.log(parsed)
-  }, [parsed])
-
-  console.log(calories)
+function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
   
   return (
     <>
@@ -57,7 +23,6 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
             </button>
             <button 
             className="bg-[#fab12f] text-white font-bold text-sm rounded-4xl py-[.5em] px-[20px] w-30 cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 btnAnalyze"
-            onClick={() => setDatas("")}
             >
               New recipe
             </button>
@@ -72,15 +37,13 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
                 <th>Weight</th>
               </thead>
               <tbody>
-                {parsed?.map((item, i) => (
-                  <tr key={i}>
-                    <td>{item.quantity}</td>
-                    <td>{item.measure}</td>
-                    <td>{item.food}</td>
-                    <td>{item.nutrients.ENERC_KCAL.quantity}</td>
-                    <td>{item.weight}</td>
+                  <tr >
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
-                ))}
               </tbody>
             </table>
           </div>
