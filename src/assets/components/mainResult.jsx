@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
   const [ingr, setIngr] = useState();
   const [res, setRes] = useState([]);
-  const [nuFact, setNuFact] = useState( );
+  const [nuFact, setNuFact] = useState();
+  const [percentDailyValue, setPercentDailyValue] = useState();
 
   useEffect(() => {
     if (datas.lenght >= 1) return;
@@ -20,29 +21,93 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
     setRes(foods);
   }, [ingr]);
 
-  console.log(res)
+  console.log(res);
 
   useEffect(() => {
     const factValue = res?.map((items) => {
-      return {calories: items.nf_calories, fat: {total_fat: items.nf_total_fat, saturated_fat: items.nf_saturated_fat}, cholestrol: items.full_nutrients[64].value, sodium: items.nf_sodium, carbohidrate: {total_carbohidrate: items.nf_total_carbohydrate, dietary_fiber: items.nf_dietary_fiber, total_sugar: items.nf_sugars},protein: items.nf_protein};
+      return {
+        calories: items.nf_calories,
+        fat: {
+          total_fat: items.nf_total_fat,
+          saturated_fat: items.nf_saturated_fat,
+          trans_fat: items.full_nutrients[83].value || 0,
+        },
+        cholestrol: items.full_nutrients[64].value,
+        sodium: items.nf_sodium,
+        carbohidrate: {
+          total_carbohidrate: items.nf_total_carbohydrate,
+          dietary_fiber: items.nf_dietary_fiber,
+          total_sugar: items.nf_sugars,
+        },
+        protein: items.nf_protein,
+        vitD: items.full_nutrients[20].value || 0,
+        calsium: items.full_nutrients[18].value || 0,
+      };
     });
-    
-  const total = factValue?.reduce((acc, item) => {
-    acc.calories += item.calories || 0;
-    acc.fat.total_fat += item.fat?.total_fat || 0;
-    acc.fat.saturated_fat += item.fat?.saturated_fat || 0;
-    acc.cholestrol += item.cholestrol || 0;
-    acc.sodium += item.sodium || 0;
-    acc.carbohidrate.total_carbohidrate += item.carbohidrate?.total_carbohidrate || 0;
-    acc.carbohidrate.dietary_fiber += item.carbohidrate?.dietary_fiber || 0;
-    acc.carbohidrate.sugar += item.carbohidrate?.total_sugar || 0;
-    acc.protein += item.protein || 0;
-    return acc;
-  }, { calories: 0, fat: {total_fat: 0, saturated_fat: 0}, cholestrol: 0, sodium: 0, carbohidrate: {total_carbohidrate: 0, dietary_fiber: 0, total_sugar: 0},protein: 0});
 
-  console.log(total);
+    const total = factValue?.reduce(
+      (acc, item) => {
+        acc.calories += item.calories || 0;
+        acc.fat.total_fat += item.fat?.total_fat || 0;
+        acc.fat.saturated_fat += item.fat?.saturated_fat || 0;
+        acc.fat.trans_fat += item.fat?.trans_fat || 0;
+        acc.cholestrol += item.cholestrol || 0;
+        acc.sodium += item.sodium || 0;
+        acc.carbohidrate.total_carbohidrate +=
+          item.carbohidrate?.total_carbohidrate || 0;
+        acc.carbohidrate.dietary_fiber += item.carbohidrate?.dietary_fiber || 0;
+        acc.carbohidrate.sugar += item.carbohidrate?.total_sugar || 0;
+        acc.protein += item.protein || 0;
+        acc.vitD += item.vitD || 0;
+        return acc;
+      },
+      {
+        calories: 0,
+        fat: { total_fat: 0, saturated_fat: 0, trans_fat: 0 },
+        cholestrol: 0,
+        sodium: 0,
+        carbohidrate: {
+          total_carbohidrate: 0,
+          dietary_fiber: 0,
+          total_sugar: 0,
+        },
+        protein: 0,
+        vitD: 0,
+        calsium: 0,
+      }
+    );
+
+    const totalPercentProtein = (total?.protein / 50) * 100;
+    const totalPercentFat = (total?.fat.total_fat / 78) * 100;
+    const totalPercentSaturatedFat = (total?.fat.saturated_fat / 20) * 100;
+    const totalPercentCholesterol = (total?.cholestrol / 300) * 100;
+    const totalPercentCarbohydrate =
+      (total?.carbohidrate.total_carbohidrate / 275) * 100;
+    const totalPercentDietaryFiber =
+      (total?.carbohidrate.dietary_fiber / 28) * 100;
+    const totalPercentSugar = (total?.carbohidrate.total_sugar / 50) * 100;
+    const totalPercentSodium = (total?.sodium / 2300) * 100;
+    const totalPercentCalcium = (total?.calsium / 1300) * 100;
+    const totalPercentVitD = (total?.vitD / 20) * 100;
+
+    const percentValue = {
+      protein: Math.floor(totalPercentProtein),
+      total_fat: Math.floor(totalPercentFat),
+      saturated_fat: Math.floor(totalPercentSaturatedFat),
+      cholesterol: Math.floor(totalPercentCholesterol),
+      carbohydrate: Math.floor(totalPercentCarbohydrate),
+      dietary_fiber: Math.floor(totalPercentDietaryFiber),
+      total_sugar: Math.floor(totalPercentSugar),
+      sodium: Math.floor(totalPercentSodium),
+      calcium: Math.floor(totalPercentCalcium),
+      vitamin_D: Math.floor(totalPercentVitD),
+    };
+
+    setNuFact(total);
+    setPercentDailyValue(percentValue);
   }, [res]);
 
+  console.log(nuFact, percentDailyValue);
   return (
     <>
       <div className="flex when-result">
@@ -177,30 +242,20 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
             </tbody>
             <tfoot>
               <tr>
-                <th>Vitamin D<span>0 µg</span></th>
+                <th>
+                  Vitamin D<span> 0 µg</span>
+                </th>
                 <td>0%</td>
               </tr>
               <tr>
                 <th>
-                Calcium <span>179.8 mg</span>
+                  Calcium <span>179.8 mg</span>
                 </th>
                 <td>18%</td>
               </tr>
               <tr>
-                <th>
-                  Iron<span>13.8 mg</span>
-                </th>
-                <td>77%</td>
-              </tr>
-              <tr>
-                <th>
-                  Potassium <span>2203.2 mg</span>
-                </th>
-                <td>47%</td>
-              </tr>
-              <tr>
                 <td className="persentInfo" colSpan={2}>
-                 *Percent Daily Values are based on a 2000 calorie diet
+                  *Percent Daily Values are based on a 2000 calorie diet
                 </td>
               </tr>
             </tfoot>
