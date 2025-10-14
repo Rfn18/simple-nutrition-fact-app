@@ -90,7 +90,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
             </table>
           </div>
         </div>
-        <div className="w-80 bg-white p-5 container-card-nutrition rounded-2xl">
+        <div className="w-85 bg-white p-5 container-card-nutrition rounded-2xl">
           <h1 className="text-3xl font-bold text-center mt-5 mb-3 pb-3 border-b-10 border-[#eaeaeaea]">
             Nutrition Facts
           </h1>
@@ -175,6 +175,35 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
                 <td>142 %</td>
               </tr>
             </tbody>
+            <tfoot>
+              <tr>
+                <th>Vitamin D<span>0 µg</span></th>
+                <td>0%</td>
+              </tr>
+              <tr>
+                <th>
+                Calcium <span>179.8 mg</span>
+                </th>
+                <td>18%</td>
+              </tr>
+              <tr>
+                <th>
+                  Iron<span>13.8 mg</span>
+                </th>
+                <td>77%</td>
+              </tr>
+              <tr>
+                <th>
+                  Potassium <span>2203.2 mg</span>
+                </th>
+                <td>47%</td>
+              </tr>
+              <tr>
+                <td className="persentInfo" colSpan={2}>
+                 *Percent Daily Values are based on a 2000 calorie diet
+                </td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>

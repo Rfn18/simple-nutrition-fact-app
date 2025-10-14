@@ -92,6 +92,25 @@ body {
   border-top: none;
 }
 
+.container-card-nutrition tfoot th {
+  font-weight: 400;
+  border-top: 1px solid #ddd;
+  font-size: 15px;
+  padding: .2em 0;
+}
+
+.container-card-nutrition tfoot td {
+  text-align: end;
+  border-top: 1px solid #ddd;
+  font-size: 15px
+}
+
+.container-card-nutrition tfoot .persentInfo {
+  font-size: 12px;
+  text-align: center;
+  padding-top: 2em;
+}
+
 .container-card-nutrition .sub-nutrition {
   padding-left: 1em;
 }
