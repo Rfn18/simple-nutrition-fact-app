@@ -192,7 +192,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Trans Fat <span>{nuFact?.fat.trans_fat} g</span>
+                  Trans Fat <span>{Number(nuFact?.fat.trans_fat?.toFixed(1))} g</span>
                 </th>
                 <td></td>
               </tr>
