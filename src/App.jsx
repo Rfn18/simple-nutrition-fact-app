@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./assets/components/header";
 import Main from "./assets/components/main";
@@ -13,7 +13,7 @@ function App() {
     <>
       <div className="nutritionFactApp">
         <Header />
-        <Main handleLoading={setLoad}/>
+        <Main handleLoading={setLoad} />
         {loading && (
           <div className="flex flex-col justify-center h-full mt-[10em] loading">
             <div className="container-spinner w-full flex justify-center">

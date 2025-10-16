@@ -5,7 +5,7 @@ function Header() {
         <h1 className="font-[Poppins] font-bold text-3xl text-center ">
           Nutrition Analysis API
         </h1>
-        <p className="text-center">
+        <p className="text-center text-sm w-screen px-5 sm:text-[16px] sm:w-full">
           Enter an ingredient list list for what you are cooking, like
           <span className="text-amber-500">"1 cup rice, 10 oz chickpeas"</span>,
           etc. <br /> Enter each ingredient on a new line.

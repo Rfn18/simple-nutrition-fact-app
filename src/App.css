@@ -67,27 +67,27 @@ body {
 }
 
 .container-card-nutrition tbody th {
-  padding: .3em 0;
+  padding: 0.3em 0;
   font-weight: 400;
 }
 
-.container-card-nutrition tbody th, .container-card-nutrition tbody td {
+.container-card-nutrition tbody th,
+.container-card-nutrition tbody td {
   border-top: 1px solid #ddd;
-  font-size: 15px
+  font-size: 15px;
 }
 
 .container-card-nutrition tbody td {
   text-align: end;
 }
 
-
-.container-card-nutrition tbody .calories-padding th{
-  padding: .2em 0;
+.container-card-nutrition tbody .calories-padding th {
+  padding: 0.2em 0;
   font-size: 30px;
   border-top: none;
 }
 
-.container-card-nutrition tbody .calories-padding td{
+.container-card-nutrition tbody .calories-padding td {
   font-size: 30px;
   border-top: none;
 }
@@ -96,13 +96,13 @@ body {
   font-weight: 400;
   border-top: 1px solid #ddd;
   font-size: 15px;
-  padding: .2em 0;
+  padding: 0.2em 0;
 }
 
 .container-card-nutrition tfoot td {
   text-align: end;
   border-top: 1px solid #ddd;
-  font-size: 15px
+  font-size: 15px;
 }
 
 .container-card-nutrition tfoot .persentInfo {

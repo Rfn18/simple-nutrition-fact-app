@@ -9,7 +9,7 @@ function Main({ handleLoading }) {
   const [newFood, setNewFood] = useState("");
   const [updated, setUpdated] = useState(false);
   const [data, setData] = useState([]);
-  const [load, setLoad] = useState(false)
+  const [load, setLoad] = useState(false);
 
   function addFood() {
     if (newFood.trim() !== "") {
@@ -32,11 +32,11 @@ function Main({ handleLoading }) {
     if (food.length >= 1) {
       const lastLength = food.length - 1;
       const testData = food[lastLength].split("\n");
-      
+
       async function nurtitionixApi() {
         try {
           handleLoading(true);
-          setLoad(true)
+          setLoad(true);
           const result = await Promise.all(
             testData.map(async (item) => {
               const res = await fetch(
@@ -58,10 +58,11 @@ function Main({ handleLoading }) {
           const validResults = result.filter(Boolean);
           setData(validResults);
         } catch (err) {
-          console.error(err);
+          console.log(err);
+          return;
         } finally {
           handleLoading(false);
-          setLoad(false)
+          setLoad(false);
         }
       }
       nurtitionixApi();
@@ -69,16 +70,27 @@ function Main({ handleLoading }) {
   }, [updated]);
 
   const handleSetFromResult = (item) => {
-    setData(item)
+    setData(item);
+  };
+
+  if (data[0]?.message) {
+    alert("We couldn't match any of your foods");
+    setData([]);
+    return;
   }
 
   const styles = () => {
-    return load === false ? "flex " : "hidden " 
-  }
-  
+    return load === false ? "flex " : "hidden ";
+  };
+
   return (
     <>
-      <main className={styles() + "flex-col items-center gap-4 w-full h-full mt-[2em] px-10 mainContainer"}>
+      <main
+        className={
+          styles() +
+          "flex-col items-center gap-4 w-full h-full mt-[2em] px-10 mainContainer"
+        }
+      >
         {data.length === 0 ? (
           <MainData
             setNewFood={setNewFood}

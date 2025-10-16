@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 
-function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setDatas }) {
+function MainResult({
+  setNewFood,
+  enterDown,
+  addFood,
+  handleUpdated,
+  datas,
+  setDatas,
+}) {
   const [ingr, setIngr] = useState();
   const [res, setRes] = useState([]);
   const [nuFact, setNuFact] = useState();
@@ -108,12 +115,12 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
 
   return (
     <>
-      <div className="flex items-start when-result">
+      <div className="flex flex-col sm:flex-row items-start when-result">
         <div className="flex flex-col justify-center items-center gap-5 w-2xl containerItems">
           <textarea
             name="inputArea"
             id="inpText"
-            className="w-[80%] h-[40dvh] border-2 border-[#ddd] bg-white rounded-md focus:outline-0 p-3 text-md "
+            className="w-[80vw] sm:w-[80%] h-[40dvh] border-2 border-[#ddd] bg-white rounded-md focus:outline-0 p-3 text-md "
             onChange={(e) => setNewFood(e.target.value)}
             onKeyDown={enterDown}
             placeholder={`1 cup rice,\n10 oz chickpeas`}
@@ -126,13 +133,14 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
             >
               Analyze
             </button>
-            <button className="bg-[#fab12f] text-white font-bold text-sm rounded-4xl py-[.5em] px-[20px] w-30 cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 btnAnalyze"
-              onClick={() => (setDatas([]))}
+            <button
+              className="bg-[#fab12f] text-white font-bold text-sm rounded-4xl py-[.5em] px-[20px] w-30 cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 btnAnalyze"
+              onClick={() => setDatas([])}
             >
               New recipe
             </button>
           </div>
-          <div className="w-[80%] border-2 border-[#ddd] bg-white rounded-md container-ingridients">
+          <div className="w-[80vw] sm:w-[80%] border-2 border-[#ddd] bg-white rounded-md container-ingridients">
             <table className="justify-self-center w-full">
               <thead className="">
                 <th>Qty</th>
@@ -156,7 +164,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
             </table>
           </div>
         </div>
-        <div className="w-85 bg-white p-5 container-card-nutrition rounded-2xl">
+        <div className="w-85 self-center mt-10 sm:mt-0 bg-white p-5 container-card-nutrition rounded-2xl">
           <h1 className="text-3xl font-bold text-center mt-5 mb-3 pb-3 border-b-10 border-[#eaeaeaea]">
             Nutrition Facts
           </h1>
@@ -179,27 +187,31 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
               <tr>
                 <th>
                   <b>
-                    Total Fat <span>{Number(nuFact?.fat.total_fat.toFixed(1))} g</span>
+                    Total Fat{" "}
+                    <span>{Number(nuFact?.fat.total_fat.toFixed(1))} g</span>
                   </b>
                 </th>
                 <td>{percentDailyValue?.total_fat}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Saturated Fat <span>{Number(nuFact?.fat.saturated_fat?.toFixed(1))} g</span>
+                  Saturated Fat{" "}
+                  <span>{Number(nuFact?.fat.saturated_fat?.toFixed(1))} g</span>
                 </th>
                 <td>{percentDailyValue?.saturated_fat}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Trans Fat <span>{Number(nuFact?.fat.trans_fat?.toFixed(1))} g</span>
+                  Trans Fat{" "}
+                  <span>{Number(nuFact?.fat.trans_fat?.toFixed(1))} g</span>
                 </th>
                 <td></td>
               </tr>
               <tr>
                 <th>
                   <b>
-                    Cholesterol <span>{Number(nuFact?.cholestrol?.toFixed(1))} mg</span>
+                    Cholesterol{" "}
+                    <span>{Number(nuFact?.cholestrol?.toFixed(1))} mg</span>
                   </b>
                 </th>
                 <td>{percentDailyValue?.cholesterol}%</td>
@@ -215,20 +227,32 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
               <tr>
                 <th>
                   <b>
-                    Total Carbohydrate <span>{Number(nuFact?.carbohidrate.total_carbohidrate.toFixed(1))} g</span>
+                    Total Carbohydrate{" "}
+                    <span>
+                      {Number(
+                        nuFact?.carbohidrate.total_carbohidrate.toFixed(1)
+                      )}{" "}
+                      g
+                    </span>
                   </b>
                 </th>
                 <td>{percentDailyValue?.carbohydrate}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Dietary Fiber <span>{Number(nuFact?.carbohidrate.dietary_fiber?.toFixed(1))} g</span>
+                  Dietary Fiber{" "}
+                  <span>
+                    {Number(nuFact?.carbohidrate.dietary_fiber?.toFixed(1))} g
+                  </span>
                 </th>
                 <td>{percentDailyValue?.dietary_fiber}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Total Sugars <span>{Number(nuFact?.carbohidrate.total_sugar?.toFixed(1))} g</span>
+                  Total Sugars{" "}
+                  <span>
+                    {Number(nuFact?.carbohidrate.total_sugar?.toFixed(1))} g
+                  </span>
                 </th>
                 <td>{percentDailyValue?.total_sugar}%</td>
               </tr>
