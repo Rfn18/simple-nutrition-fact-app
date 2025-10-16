@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
+function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setDatas }) {
   const [ingr, setIngr] = useState();
   const [res, setRes] = useState([]);
   const [nuFact, setNuFact] = useState();
@@ -56,7 +56,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
         acc.carbohidrate.total_carbohidrate +=
           item.carbohidrate?.total_carbohidrate || 0;
         acc.carbohidrate.dietary_fiber += item.carbohidrate?.dietary_fiber || 0;
-        acc.carbohidrate.sugar += item.carbohidrate?.total_sugar || 0;
+        acc.carbohidrate.total_sugar += item.carbohidrate?.total_sugar || 0;
         acc.protein += item.protein || 0;
         acc.vitD += item.vitD || 0;
         return acc;
@@ -107,10 +107,11 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
     setPercentDailyValue(percentValue);
   }, [res]);
 
-  console.log(nuFact, percentDailyValue);
+  console.log(percentDailyValue)
+
   return (
     <>
-      <div className="flex when-result">
+      <div className="flex items-start when-result">
         <div className="flex flex-col justify-center items-center gap-5 w-2xl containerItems">
           <textarea
             name="inputArea"
@@ -127,7 +128,9 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
             >
               Analyze
             </button>
-            <button className="bg-[#fab12f] text-white font-bold text-sm rounded-4xl py-[.5em] px-[20px] w-30 cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 btnAnalyze">
+            <button className="bg-[#fab12f] text-white font-bold text-sm rounded-4xl py-[.5em] px-[20px] w-30 cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 btnAnalyze"
+              onClick={() => (setDatas([]))}
+            >
               New recipe
             </button>
           </div>
@@ -168,7 +171,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
                 <th>
                   <b>Calories</b>
                 </th>
-                <td>1774</td>
+                <td>{nuFact?.calories}</td>
               </tr>
               <tr className="font-bold text-end thick-row">
                 <td colSpan={2}>
@@ -178,80 +181,80 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas }) {
               <tr>
                 <th>
                   <b>
-                    Total Fat <span>18.3 g</span>
+                    Total Fat <span>{nuFact?.fat.total_fat} g</span>
                   </b>
                 </th>
-                <td>28%</td>
+                <td>{percentDailyValue?.total_fat}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Saturated Fat <span>2 g</span>
+                  Saturated Fat <span>{nuFact?.fat.saturated_fat} g</span>
                 </th>
-                <td>10%</td>
+                <td>{percentDailyValue?.saturated_fat}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Trans Fat <span>0 g</span>
+                  Trans Fat <span>{nuFact?.fat.trans_fat} g</span>
                 </th>
                 <td></td>
               </tr>
               <tr>
                 <th>
                   <b>
-                    Cholesterol <span>0 mg</span>
+                    Cholesterol <span>{nuFact?.cholesterol || 0} mg</span>
                   </b>
                 </th>
-                <td>0 %</td>
+                <td>{percentDailyValue?.cholesterol}%</td>
               </tr>
               <tr>
                 <th>
                   <b>
-                    Sodium <span>70 mg</span>
+                    Sodium <span>{Math.floor(nuFact?.sodium)} mg</span>
                   </b>
                 </th>
-                <td>3 %</td>
+                <td>{percentDailyValue?.sodium}%</td>
               </tr>
               <tr>
                 <th>
                   <b>
-                    Total Carbohydrate <span>333.2 g</span>
+                    Total Carbohydrate <span>{nuFact?.carbohidrate.total_carbohidrate} g</span>
                   </b>
                 </th>
-                <td>111 %</td>
+                <td>{percentDailyValue?.carbohydrate}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Dietary Fiber <span>34.6 g</span>
+                  Dietary Fiber <span>{nuFact?.carbohidrate.dietary_fiber} g</span>
                 </th>
-                <td>138 %</td>
+                <td>{percentDailyValue?.dietary_fiber}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Total Sugars <span>30.3 g</span>
+                  Total Sugars <span>{nuFact?.carbohidrate.total_sugar} g</span>
                 </th>
-                <td></td>
+                <td>{percentDailyValue?.total_sugar}%</td>
               </tr>
               <tr>
                 <th>
                   <b>
-                    Protein <span>71 g</span>
+                    Protein <span>{nuFact?.protein} g</span>
                   </b>
                 </th>
-                <td>142 %</td>
+                <td>{percentDailyValue?.protein}%</td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
                 <th>
-                  Vitamin D<span> 0 µg</span>
+                  Vitamin D <span>{Math.floor(nuFact?.vitD)} µg</span>
                 </th>
-                <td>0%</td>
+                <td>{percentDailyValue?.vitamin_D}%</td>
               </tr>
               <tr>
                 <th>
-                  Calcium <span>179.8 mg</span>
+                  Calcium <span>{nuFact?.calcium || 0} mg</span>
                 </th>
-                <td>18%</td>
+                <td>{percentDailyValue?.calcium}%</td>
               </tr>
               <tr>
                 <td className="persentInfo" colSpan={2}>

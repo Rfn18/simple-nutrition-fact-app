@@ -64,6 +64,10 @@ function Main({ handleLoading }) {
     }
   }, [updated]);
 
+  const handleSetFromResult = (item) => {
+    setData(item)
+  }
+
   return (
     <>
       <main className="flex flex-col items-center gap-4 w-full h-full mt-[2em] px-10">
@@ -81,6 +85,7 @@ function Main({ handleLoading }) {
             addFood={addFood}
             handleUpdated={handleUpdated}
             datas={data}
+            setDatas={handleSetFromResult}
           />
         )}
       </main>
