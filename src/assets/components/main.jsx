@@ -7,6 +7,7 @@ function Main({ handleLoading }) {
   const [newFood, setNewFood] = useState("");
   const [updated, setUpdated] = useState(false);
   const [data, setData] = useState([]);
+  const [load, setLoad] = useState(false)
 
   function addFood() {
     if (newFood.trim() !== "") {
@@ -34,6 +35,7 @@ function Main({ handleLoading }) {
       async function nurtitionixApi() {
         try {
           handleLoading(true);
+          setLoad(true)
           const result = await Promise.all(
             testData.map(async (item) => {
               const res = await fetch(
@@ -58,6 +60,7 @@ function Main({ handleLoading }) {
           console.error(err);
         } finally {
           handleLoading(false);
+          setLoad(false)
         }
       }
       nurtitionixApi();
@@ -68,9 +71,13 @@ function Main({ handleLoading }) {
     setData(item)
   }
 
+  const styles = () => {
+    return load === false ? "flex " : "hidden " 
+  }
+
   return (
     <>
-      <main className="flex flex-col items-center gap-4 w-full h-full mt-[2em] px-10">
+      <main className={styles() + "flex-col items-center gap-4 w-full h-full mt-[2em] px-10 mainContainer"}>
         {data.length === 0 ? (
           <MainData
             setNewFood={setNewFood}

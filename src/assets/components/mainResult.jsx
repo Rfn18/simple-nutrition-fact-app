@@ -32,7 +32,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
           saturated_fat: items.nf_saturated_fat,
           trans_fat: items.full_nutrients[83].value || 0,
         },
-        cholestrol: items.full_nutrients[64].value,
+        cholestrol: items.nf_cholesterol,
         sodium: items.nf_sodium,
         carbohidrate: {
           total_carbohidrate: items.nf_total_carbohydrate,
@@ -59,6 +59,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
         acc.carbohidrate.total_sugar += item.carbohidrate?.total_sugar || 0;
         acc.protein += item.protein || 0;
         acc.vitD += item.vitD || 0;
+        acc.calsium += item.calsium || 0;
         return acc;
       },
       {
@@ -107,8 +108,9 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
     setPercentDailyValue(percentValue);
   }, [res]);
 
+  
   console.log(percentDailyValue)
-
+  console.log(nuFact)
   return (
     <>
       <div className="flex items-start when-result">
@@ -120,6 +122,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
             onChange={(e) => setNewFood(e.target.value)}
             onKeyDown={enterDown}
             placeholder={`1 cup rice,\n10 oz chickpeas`}
+            required
           ></textarea>
           <div className="flex gap-3 container-button">
             <button
@@ -171,7 +174,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
                 <th>
                   <b>Calories</b>
                 </th>
-                <td>{nuFact?.calories}</td>
+                <td>{Number(nuFact?.calories.toFixed(1))}</td>
               </tr>
               <tr className="font-bold text-end thick-row">
                 <td colSpan={2}>
@@ -181,14 +184,14 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
               <tr>
                 <th>
                   <b>
-                    Total Fat <span>{nuFact?.fat.total_fat} g</span>
+                    Total Fat <span>{Number(nuFact?.fat.total_fat.toFixed(1))} g</span>
                   </b>
                 </th>
                 <td>{percentDailyValue?.total_fat}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Saturated Fat <span>{nuFact?.fat.saturated_fat} g</span>
+                  Saturated Fat <span>{Number(nuFact?.fat.saturated_fat?.toFixed(1))} g</span>
                 </th>
                 <td>{percentDailyValue?.saturated_fat}%</td>
               </tr>
@@ -201,7 +204,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
               <tr>
                 <th>
                   <b>
-                    Cholesterol <span>{nuFact?.cholesterol || 0} mg</span>
+                    Cholesterol <span>{Number(nuFact?.cholestrol?.toFixed(1))} mg</span>
                   </b>
                 </th>
                 <td>{percentDailyValue?.cholesterol}%</td>
@@ -209,7 +212,7 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
               <tr>
                 <th>
                   <b>
-                    Sodium <span>{Math.floor(nuFact?.sodium)} mg</span>
+                    Sodium <span>{Number(nuFact?.sodium.toFixed(1))} mg</span>
                   </b>
                 </th>
                 <td>{percentDailyValue?.sodium}%</td>
@@ -217,27 +220,27 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
               <tr>
                 <th>
                   <b>
-                    Total Carbohydrate <span>{nuFact?.carbohidrate.total_carbohidrate} g</span>
+                    Total Carbohydrate <span>{Number(nuFact?.carbohidrate.total_carbohidrate.toFixed(1))} g</span>
                   </b>
                 </th>
                 <td>{percentDailyValue?.carbohydrate}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Dietary Fiber <span>{nuFact?.carbohidrate.dietary_fiber} g</span>
+                  Dietary Fiber <span>{Number(nuFact?.carbohidrate.dietary_fiber?.toFixed(1))} g</span>
                 </th>
                 <td>{percentDailyValue?.dietary_fiber}%</td>
               </tr>
               <tr>
                 <th className="sub-nutrition">
-                  Total Sugars <span>{nuFact?.carbohidrate.total_sugar} g</span>
+                  Total Sugars <span>{Number(nuFact?.carbohidrate.total_sugar?.toFixed(1))} g</span>
                 </th>
                 <td>{percentDailyValue?.total_sugar}%</td>
               </tr>
               <tr>
                 <th>
                   <b>
-                    Protein <span>{nuFact?.protein} g</span>
+                    Protein <span>{Number(nuFact?.protein.toFixed(1))} g</span>
                   </b>
                 </th>
                 <td>{percentDailyValue?.protein}%</td>
@@ -246,13 +249,13 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
             <tfoot>
               <tr>
                 <th>
-                  Vitamin D <span>{Math.floor(nuFact?.vitD)} µg</span>
+                  Vitamin D <span>{Number(nuFact?.vitD.toFixed(1))} µg</span>
                 </th>
                 <td>{percentDailyValue?.vitamin_D}%</td>
               </tr>
               <tr>
                 <th>
-                  Calcium <span>{nuFact?.calcium || 0} mg</span>
+                  Calcium <span>{Number(nuFact?.calsium?.toFixed(1))} mg</span>
                 </th>
                 <td>{percentDailyValue?.calcium}%</td>
               </tr>

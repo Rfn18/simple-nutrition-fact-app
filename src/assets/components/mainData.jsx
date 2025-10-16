@@ -8,6 +8,7 @@ function MainData({ setNewFood, enterDown, addFood, handleUpdated }) {
         onChange={(e) => setNewFood(e.target.value)}
         onKeyDown={enterDown}
         placeholder={`1 cup rice,\n10 oz chickpeas`}
+        required
       ></textarea>
       <button
         className="bg-[#fab12f] text-white font-bold rounded-4xl py-[.5em] px-[2em] cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 btnAnalyze"
