@@ -21,8 +21,6 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
     setRes(foods);
   }, [ingr]);
 
-  console.log(res);
-
   useEffect(() => {
     const factValue = res?.map((items) => {
       return {
@@ -108,9 +106,6 @@ function MainResult({ setNewFood, enterDown, addFood, handleUpdated, datas, setD
     setPercentDailyValue(percentValue);
   }, [res]);
 
-  
-  console.log(percentDailyValue)
-  console.log(nuFact)
   return (
     <>
       <div className="flex items-start when-result">

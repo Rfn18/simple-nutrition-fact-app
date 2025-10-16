@@ -32,8 +32,7 @@ function Main({ handleLoading }) {
     if (food.length >= 1) {
       const lastLength = food.length - 1;
       const testData = food[lastLength].split("\n");
-
-      console.log(testData.toLocaleString());
+      
       async function nurtitionixApi() {
         try {
           handleLoading(true);
@@ -76,8 +75,6 @@ function Main({ handleLoading }) {
   const styles = () => {
     return load === false ? "flex " : "hidden " 
   }
-
-  console.log(import.meta.env.VITE_APP_ID)
   
   return (
     <>
