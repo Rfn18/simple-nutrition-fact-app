@@ -76,6 +76,8 @@ function Main({ handleLoading }) {
   const styles = () => {
     return load === false ? "flex " : "hidden " 
   }
+
+  console.log(import.meta.env.VITE_APP_ID)
   
   return (
     <>
