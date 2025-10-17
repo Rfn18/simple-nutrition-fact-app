@@ -35,7 +35,7 @@ function MainResult({
         fat: {
           total_fat: items.nf_total_fat,
           saturated_fat: items.nf_saturated_fat,
-          trans_fat: items.full_nutrients[83].value || 0,
+          trans_fat: items?.full_nutrients[83]?.value || 0,
         },
         cholestrol: items.nf_cholesterol,
         sodium: items.nf_sodium,

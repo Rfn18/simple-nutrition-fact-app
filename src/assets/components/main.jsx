@@ -73,6 +73,8 @@ function Main({ handleLoading }) {
     setData(item);
   };
 
+  console.log(data);
+
   if (data[0]?.message) {
     alert("We couldn't match any of your foods");
     setData([]);
