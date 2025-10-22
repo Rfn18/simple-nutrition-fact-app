@@ -1,7 +1,7 @@
 function Header() {
   return (
     <>
-      <header className="flex flex-col justify-center items-center gap-2 text-[#102E50]">
+      <section className="flex flex-col justify-center items-center gap-2 text-[#102E50]">
         <h1 className="font-[Poppins] font-bold text-3xl text-center ">
           Nutrition Analysis API
         </h1>
@@ -10,7 +10,7 @@ function Header() {
           <span className="text-amber-500">"1 cup rice, 10 oz chickpeas"</span>,
           etc. <br /> Enter each ingredient on a new line.
         </p>
-      </header>
+      </section>
     </>
   );
 }

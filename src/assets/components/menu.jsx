@@ -1,7 +1,11 @@
+import Headers from "../templates/headers";
 function Menu() {
     return (
         <>
-            <h1>menu</h1>
+            <Headers />
+            <main className="h-auto w-full flex flex-col items-center">
+                <h1>menu</h1>
+            </main>
         </>
     )
 }
