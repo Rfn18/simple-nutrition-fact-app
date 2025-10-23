@@ -6,11 +6,11 @@ function Headers() {
                 <i className="fa-solid fa-camera text-2xl"></i>
                 <h1 >Ai Nutrition Analysis</h1>
             </div>
-            <div className="flex items-center container-profile gap-1">
+            <div className="flex items-center container-profile gap-2">
                 <p className="text-[12px]">Follow us</p>
-                <a href="#" > <i class="fa-brands fa-tiktok text-2xl"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram text-2xl"></i></a>
-                <a href="#"><i class="fa-solid fa-envelope text-2xl"></i></a>
+                <a href="#"> <i class="fa-brands fa-tiktok text-[20px]"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram text-[20px]"></i></a>
+                <a href="#"><i class="fa-solid fa-envelope text-[20px]"></i></a>
             </div>
         </header>
         </>
