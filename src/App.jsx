@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./assets/components/header";
+import Headers from "./assets/templates/headers";
 import Main from "./assets/components/main";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
 
   return (
     <>
+      <Headers />
       <div className="nutritionFactApp">
         <Header />
         <Main handleLoading={setLoad} />
