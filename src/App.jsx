@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./assets/components/header";
 import Headers from "./assets/templates/headers";
-import Main from "./assets/components/main";
+import Main from "./assets/components/input/main";
 
 function App() {
   const [loading, setLoading] = useState(false);
