@@ -4,7 +4,7 @@ function MainData({ setNewFood, enterDown, addFood, handleUpdated }) {
       <textarea
         name="inputArea"
         id="inpText"
-        className="w-[80%] h-[40dvh] border-2 border-[#eaeaea] bg-white rounded-md focus:outline-0 p-3 text-md "
+        className="w-[40%] h-[40dvh] border-2 border-[#eaeaea] bg-white rounded-md focus:outline-0 p-3 text-md "
         onChange={(e) => setNewFood(e.target.value)}
         onKeyDown={enterDown}
         placeholder={`1 cup rice,\n10 oz chickpeas`}
