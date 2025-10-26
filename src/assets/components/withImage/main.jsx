@@ -32,7 +32,7 @@ function MainImg() {
             </p>
           </label>
         </div>
-        <button className="bg-[#fab12f] text-md font-bold py-1 px-20 rounded-4xl text-white z-1 mt-4 cursor-pointer">
+        <button className="bg-[#fab12f] text-white font-bold rounded-4xl py-[.5em] px-[2em] cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 mt-5">
           Done
         </button>
         {preview ? <img src={preview} alt="test" /> : null}
