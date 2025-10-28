@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function MainImg() {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
+
   function handleImageChange(e) {
     const file = e.target.files[0];
     if (file) {
@@ -10,6 +12,22 @@ function MainImg() {
       setPreview(URL.createObjectURL(file));
     }
   }
+
+  function handleClick() {
+    if (image !== null) {
+      console.log(image)
+        axios.post("http://127.0.0.1:3000/image", {
+          image: "test" 
+        })
+        .then(function (response) {
+          console.log(response)
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
+    }
+  }
+
   return (
     <>
       <div className="container-sImage flex flex-col justify-center items-center">
@@ -32,7 +50,7 @@ function MainImg() {
             </p>
           </label>
         </div>
-        <button className="bg-[#fab12f] text-white font-bold rounded-4xl py-[.5em] px-[2em] cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 mt-5">
+        <button className="bg-[#fab12f] text-white font-bold rounded-4xl py-[.5em] px-[2em] cursor-pointer transition ease-in scale-100 hover:bg-white hover:text-[#fab12f] hover:scale-95 mt-5" onClick={handleClick}>
           Done
         </button>
         {preview ? <img src={preview} alt="test" /> : null}
